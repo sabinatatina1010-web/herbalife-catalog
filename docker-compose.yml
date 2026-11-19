@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: herbalife-postgres
+    restart: unless-stopped
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: herbalife
+      POSTGRES_PASSWORD: herbalife
+      POSTGRES_DB: herbalife_catalog
+    volumes:
+      - herbalife_pg_data:/var/lib/postgresql/data
+
+volumes:
+  herbalife_pg_data:

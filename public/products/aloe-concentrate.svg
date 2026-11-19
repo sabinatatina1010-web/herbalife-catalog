@@ -1,0 +1,15 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" fill="none">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="800" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#74C69D"/>
+      <stop offset="1" stop-color="#F3FAF6"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g)"/>
+  <circle cx="620" cy="120" r="90" fill="#1B4332" fill-opacity="0.08"/>
+  <circle cx="140" cy="480" r="120" fill="#1B4332" fill-opacity="0.08"/>
+  <rect x="285" y="150" width="230" height="300" rx="36" fill="white" fill-opacity="0.92"/>
+  <rect x="315" y="190" width="170" height="170" rx="28" fill="#74C69D"/>
+  <rect x="345" y="390" width="110" height="18" rx="9" fill="#1B4332" fill-opacity="0.85"/>
+  <text x="400" y="545" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#1B4332">Aloe</text>
+</svg>

@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ProductStatus {
+  available
+  out_of_stock
+  preorder
+}
+
+enum OrderStatus {
+  new
+  processing
+  completed
+}
+
+model Category {
+  id        String    @id @default(cuid())
+  name      String
+  slug      String    @unique
+  isActive  Boolean   @default(true)
+  sortOrder Int       @default(0)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  products  Product[]
+
+  @@index([isActive, sortOrder])
+}
+
+model Product {
+  id              String        @id @default(cuid())
+  name            String
+  slug            String        @unique
+  categoryId      String
+  image           String
+  price           Int
+  description     String
+  fullDescription String?
+  composition     String?
+  preparation     String?
+  status          ProductStatus @default(available)
+  rating          Float?
+  ratingCount     Int?
+  isActive        Boolean       @default(true)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  category        Category      @relation(fields: [categoryId], references: [id])
+  orders          OrderRequest[]
+
+  @@index([categoryId])
+  @@index([isActive, status])
+  @@index([name])
+}
+
+model OrderRequest {
+  id           String      @id @default(cuid())
+  productId    String
+  customerName String
+  phone        String
+  quantity     Int         @default(1)
+  comment      String?
+  status       OrderStatus @default(new)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  product      Product     @relation(fields: [productId], references: [id])
+
+  @@index([status, createdAt])
+  @@index([productId])
+}
